@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
+  m_Name: Compliment
+  m_EditorClassIdentifier: 
+  _title: Compliment
+  _description: Should you compliment their appearance?
+  _isThought: 1
+  _location: 0
+  _outcome: 0
+  _minPoints: 0
+  _maxPoints: 100
+  _rejectText: '"Sounds like you love the outdoors?"'
+  _rejectFeedback: 9
+  _rejectValue: 2
+  _rejectResponse: '"I do! I''ve been trying to get out of the city more recently"'
+  _acceptText: '"You look stunning!"'
+  _acceptValue: 1
+  _acceptFeedback: 0
+  _acceptResponse: '"Thanks!"'

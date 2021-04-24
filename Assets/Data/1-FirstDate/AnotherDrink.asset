@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
+  m_Name: AnotherDrink
+  m_EditorClassIdentifier: 
+  _title: AnotherDrink
+  _description: '"Can I get us another round?"'
+  _isThought: 0
+  _location: 0
+  _outcome: 0
+  _minPoints: 0
+  _maxPoints: 100
+  _rejectText: '"I should probably not over do it."'
+  _rejectFeedback: 4
+  _rejectValue: -2
+  _rejectResponse: 
+  _acceptText: '"Absolutely."'
+  _acceptValue: 2
+  _acceptFeedback: 5
+  _acceptResponse: 
