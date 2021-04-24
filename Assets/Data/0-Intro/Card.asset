@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
   m_Name: Card
   m_EditorClassIdentifier: 
-  _title: 
+  _title: Tinder
   _image: {fileID: 0}
   _description: 
   _minPoints: 0
   _maxPoints: 100
   _outcome: 0
-  _rejectText: 
-  _rejectValue: 0
-  _acceptText: 
-  _acceptValue: 0
+  _rejectText: Bye!
+  _rejectValue: -8
+  _acceptText: Hi!
+  _acceptValue: 42

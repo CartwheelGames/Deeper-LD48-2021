@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628150199dd6eae408980a156d3d53bb, type: 3}
   m_Name: Sequence
   m_EditorClassIdentifier: 
-  _intro: {fileID: 0}
-  _firstDate: {fileID: 0}
-  _earlyDates: {fileID: 0}
-  _dating: {fileID: 0}
-  _movedIn: {fileID: 0}
-  _engaged: {fileID: 0}
-  _earlyMarriage: {fileID: 0}
-  _outro: {fileID: 0}
+  _phases:
+  - {fileID: 11400000, guid: d618bc185f481c64cb069e65aae6c6e9, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
