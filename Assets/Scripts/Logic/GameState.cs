@@ -4,5 +4,5 @@ public enum GameState
 	Card,
 	IsAccepting,
 	IsRejecting,
-	WaitingForNextCard
+	MoveToNextCard
 }

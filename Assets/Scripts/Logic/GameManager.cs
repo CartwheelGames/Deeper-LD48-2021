@@ -15,7 +15,7 @@ public sealed class GameManager : MonoBehaviour
 	[SerializeField]
 	private BasicEvent _onEndGame;
 	[SerializeField]
-	private CardStateEvent _onChangeCard;
+	private CardPayloadEvent _onChangeCard;
 	[SerializeField]
 	private GameStateEvent _onChangeGameState;
 
@@ -29,14 +29,17 @@ public sealed class GameManager : MonoBehaviour
 	{
 		CleanUp();
 		Next();
-		_gameState = GameState.Card;
 		_onBeginGame?.Invoke();
 	}
 
-	public void Choose(bool isAccepting)
+	public void Accept()
 	{
-		_score += isAccepting ? _currentCard.AcceptValue : _currentCard.RejectValue;
-		Next();
+		_score += _currentCard.AcceptValue;
+	}
+
+	public void Reject()
+	{
+		_score -= _currentCard.AcceptValue;
 	}
 
 	public void ChangeState(GameState state)
@@ -45,12 +48,14 @@ public sealed class GameManager : MonoBehaviour
 		{
 			_gameState = state;
 			_onChangeGameState?.Invoke(state);
+			Debug.Log(state);
 		}
 	}
 
 	private void Start()
 	{
 		_onEndGame.AddListener(CleanUp);
+		_onChangeGameState.AddListener(CheckMoveNext);
 	}
 
 	private void CleanUp()
@@ -59,14 +64,22 @@ public sealed class GameManager : MonoBehaviour
 		_nextCardIndex = 0;
 		_phaseIndex = 0;
 		_score = 0;
-		_gameState = GameState.None;
+		ChangeState(GameState.None);
+	}
+
+	private void CheckMoveNext(GameState state)
+	{
+		if (state == GameState.MoveToNextCard)
+		{
+			Next();
+		}
 	}
 
 	private void Next()
 	{
 		if (TryGetCardPhase(out _currentCard))
 		{
-			_onChangeCard?.Invoke(new CardState(
+			_onChangeCard?.Invoke(new CardPayload(
 				_currentCard,
 				GetBackgroundColor(),
 				_locationMap.GetSprite(_currentCard.Location),

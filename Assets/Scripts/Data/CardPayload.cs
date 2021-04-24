@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class CardState
+public class CardPayload
 {
 	private readonly Card _card;
 
-	public CardState(Card currentCard, Color backgroundColor, Sprite location, Sprite acceptFeedback, Sprite rejectFeedback, string outcomeText)
+	public CardPayload(Card currentCard, Color backgroundColor, Sprite location, Sprite acceptFeedback, Sprite rejectFeedback, string outcomeText)
 	{
 		_card = currentCard;
 		Location = location;
