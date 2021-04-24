@@ -15,7 +15,7 @@ MonoBehaviour:
   _title: Compliment
   _description: Should you compliment their appearance?
   _isThought: 1
-  _location: 0
+  _location: 1
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100

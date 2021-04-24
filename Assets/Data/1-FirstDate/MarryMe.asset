@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
+  m_Name: MarryMe
+  m_EditorClassIdentifier: 
+  _title: MarryMe
+  _description: This is the best date I've had in years, should I just ask them to
+    marry me?
+  _isThought: 1
+  _location: 7
+  _outcome: 0
+  _minPoints: 0
+  _maxPoints: 100
+  _rejectText: Definitely not...
+  _rejectFeedback: 4
+  _rejectValue: -2
+  _rejectResponse: You realize the conversation has gone quiet while you were pondering.
+    You sheepishly pick up from where you last left off.
+  _acceptText: Let's do it!
+  _acceptValue: -8
+  _acceptFeedback: 7
+  _acceptResponse: You drop a knee and profess your undying love. It's dead silent
+    for a moment before they start cracking up. You play along as if you were just
+    joking...

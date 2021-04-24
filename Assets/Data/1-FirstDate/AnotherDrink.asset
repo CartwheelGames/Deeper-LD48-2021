@@ -15,7 +15,7 @@ MonoBehaviour:
   _title: AnotherDrink
   _description: '"Can I get us another round?"'
   _isThought: 0
-  _location: 0
+  _location: 2
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100

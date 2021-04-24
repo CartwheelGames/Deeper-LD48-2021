@@ -15,7 +15,7 @@ MonoBehaviour:
   _title: AskOut
   _description: '"Would you like to get dinner soon?"'
   _isThought: 0
-  _location: 0
+  _location: 1
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100

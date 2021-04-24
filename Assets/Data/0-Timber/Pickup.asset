@@ -15,15 +15,15 @@ MonoBehaviour:
   _title: Pickup
   _description: Should you try that pickup line you saw online?
   _isThought: 1
-  _location: 0
+  _location: 1
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100
   _rejectText: No
   _rejectFeedback: 6
-  _rejectValue: 0
+  _rejectValue: 5
   _rejectResponse: '"Hi there cutie!"'
   _acceptText: Yes
-  _acceptValue: -2
+  _acceptValue: 2
   _acceptFeedback: 10
   _acceptResponse: '"Are you a sugar maple tree? Because I would totally tap that."'
