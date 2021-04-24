@@ -8,9 +8,9 @@ public class Card : ScriptableObject
 	[SerializeField]
 	private string _title;
 
-	[Tooltip("The card's primary image")]
+	[Tooltip("An index for the card's primary image background")]
 	[SerializeField]
-	private Sprite _image;
+	private Location _location;
 
 	[Tooltip("The description that appears on the card face")]
 	[SerializeField]
@@ -52,7 +52,7 @@ public class Card : ScriptableObject
 
 
 	public string Title => _title;
-	public Sprite Image => _image;
+	public Location Location => _location;
 	public string Description => _description;
 	public int MaxPoints => _maxPoints;
 	public int MinPoints => _minPoints;

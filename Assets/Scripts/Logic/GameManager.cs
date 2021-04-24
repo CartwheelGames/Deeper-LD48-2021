@@ -62,9 +62,4 @@ public sealed class GameManager : MonoBehaviour
 		card = null;
 		return false;
 	}
-
-	private void EndGame()
-	{
-
-	}
 }
