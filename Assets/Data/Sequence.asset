@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _phases:
   - {fileID: 11400000, guid: d618bc185f481c64cb069e65aae6c6e9, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6585846806e9f4a6aa888a51a6c1230c, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
