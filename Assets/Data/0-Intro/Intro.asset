@@ -16,7 +16,3 @@ MonoBehaviour:
   _background: {fileID: 0}
   _cards:
   - {fileID: 11400000, guid: df2ab11aa45326d46b7f297f9934501d, type: 2}
-  - {fileID: 11400000, guid: df2ab11aa45326d46b7f297f9934501d, type: 2}
-  - {fileID: 11400000, guid: df2ab11aa45326d46b7f297f9934501d, type: 2}
-  - {fileID: 11400000, guid: df2ab11aa45326d46b7f297f9934501d, type: 2}
-  - {fileID: 11400000, guid: df2ab11aa45326d46b7f297f9934501d, type: 2}
