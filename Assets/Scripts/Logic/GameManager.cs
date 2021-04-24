@@ -78,7 +78,7 @@ public sealed class GameManager : MonoBehaviour
 		while (_phaseIndex < _sequence.Count)
 		{
 			Phase phase = _sequence.GetPhaseAt(_phaseIndex);
-			if (TryGetNextValidCardPhase(phase, out card))
+			if (phase != null && TryGetNextValidCardPhase(phase, out card))
 			{
 				return true;
 			}
@@ -116,5 +116,4 @@ public sealed class GameManager : MonoBehaviour
 		}
 		return outcome;
 	}
-
 }

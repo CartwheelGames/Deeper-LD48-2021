@@ -20,10 +20,6 @@ public class CardState
 	public string Title => _card.Title;
 	public bool IsThought => _card.IsThought;
 	public string Description => _card.Description;
-	public int MaxPoints => _card.MaxPoints;
-	public int MinPoints => _card.MinPoints;
 	public string RejectText => _card.RejectText;
-	public int RejectValue => _card.RejectValue;
 	public string AcceptText => _card.AcceptText;
-	public int AcceptValue => _card.AcceptValue;
 }

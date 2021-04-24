@@ -76,6 +76,6 @@ public class Card : ScriptableObject
 	public int RejectValue => _rejectValue;
 	public Feedback RejectFeedback => _rejectFeedback;
 	public int AcceptValue => _acceptValue;
-	public string AcceptText => _description;
+	public string AcceptText => _acceptText;
 	public Feedback AcceptFeedback => _acceptFeedback;
 }
