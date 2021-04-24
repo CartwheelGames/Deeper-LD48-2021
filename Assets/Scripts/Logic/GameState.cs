@@ -1,7 +1,7 @@
-public enum UIState
+public enum GameState
 {
 	None,
-	ViewingCard,
+	Card,
 	IsAccepting,
 	IsRejecting,
 	WaitingForNextCard

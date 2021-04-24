@@ -16,31 +16,36 @@ public sealed class GameManager : MonoBehaviour
 	private BasicEvent _onEndGame;
 	[SerializeField]
 	private CardStateEvent _onChangeCard;
+	[SerializeField]
+	private GameStateEvent _onChangeGameState;
 
 	private int _nextCardIndex;
 	private int _phaseIndex;
 	private int _score;
 	private Card _currentCard;
-
+	private GameState _gameState;
 
 	public void Begin()
 	{
 		CleanUp();
 		Next();
+		_gameState = GameState.Card;
 		_onBeginGame?.Invoke();
 	}
 
 	public void Choose(bool isAccepting)
 	{
-		if (_currentCard != null)
-		{
-			_score += _currentCard.AcceptValue;
-		}
-		else
-		{
-			_score += _currentCard.RejectValue;
-		}
+		_score += isAccepting ? _currentCard.AcceptValue : _currentCard.RejectValue;
 		Next();
+	}
+
+	public void ChangeState(GameState state)
+	{
+		if (_gameState != state)
+		{
+			_gameState = state;
+			_onChangeGameState?.Invoke(state);
+		}
 	}
 
 	private void Start()
@@ -54,6 +59,7 @@ public sealed class GameManager : MonoBehaviour
 		_nextCardIndex = 0;
 		_phaseIndex = 0;
 		_score = 0;
+		_gameState = GameState.None;
 	}
 
 	private void Next()
@@ -67,10 +73,13 @@ public sealed class GameManager : MonoBehaviour
 				_feedbackMap.GetSprite(_currentCard.AcceptFeedback),
 				_feedbackMap.GetSprite(_currentCard.RejectFeedback),
 				GetOutcome(_currentCard)));
+			ChangeState(GameState.Card);
+
 		}
 		else
 		{
 			_onEndGame?.Invoke();
+			ChangeState(GameState.None);
 		}
 	}
 

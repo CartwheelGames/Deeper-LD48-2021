@@ -9,36 +9,42 @@ public class FakeUI : MonoBehaviour
 	private BasicEvent _chooseReject;
 
 	[SerializeField]
+	private GameStateEvent _onRequestGameState;
+
+	[SerializeField]
 	private BasicEvent _begin;
 
 	private CardState _cardState;
-	private UIState _uiState;
+	private GameState _gameState;
+
+	public void ReceiveGameState(GameState gameState)
+	{
+		_gameState = gameState;
+	}
 
 	public void ReceiveCardState(CardState cardState)
 	{
 		_cardState = cardState;
-		_uiState = UIState.ViewingCard;
 	}
 
 	public void OnEnd()
 	{
 		_cardState = null;
-		_uiState = UIState.None;
 	}
 
 	private void OnGUI()
 	{
 		if (_cardState != null)
 		{
-			switch (_uiState)
+			switch (_gameState)
 			{
-				case UIState.ViewingCard:
+				case GameState.Card:
 					DrawCard();
 					break;
-				case UIState.IsAccepting:
+				case GameState.IsAccepting:
 					DrawAcceptFeedback();
 					break;
-				case UIState.IsRejecting:
+				case GameState.IsRejecting:
 					DrawRejectFeedback();
 					break;
 			}
@@ -52,7 +58,7 @@ public class FakeUI : MonoBehaviour
 	private void DrawIntro()
 	{
 		GUILayout.BeginVertical("box");
-		if (GUILayout.Button("BEGIN"))
+		if (GUILayout.Button("Begin"))
 		{
 			_begin.Invoke();
 		}
@@ -67,11 +73,11 @@ public class FakeUI : MonoBehaviour
 		GUILayout.BeginHorizontal("box");
 		if (GUILayout.Button($"Reject: {_cardState.RejectText}"))
 		{
-			ChangeState(UIState.IsRejecting);
+			RequestChangeState(GameState.IsRejecting);
 		}
 		else if (GUILayout.Button($"Accept: {_cardState.AcceptText}"))
 		{
-			ChangeState(UIState.IsAccepting);
+			RequestChangeState(GameState.IsAccepting);
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
@@ -94,7 +100,6 @@ public class FakeUI : MonoBehaviour
 		if (GUILayout.Button("NEXT"))
 		{
 			_chooseAccept?.Invoke();
-			ChangeState(UIState.WaitingForNextCard);
 		}
 		GUILayout.EndVertical();
 	}
@@ -108,14 +113,12 @@ public class FakeUI : MonoBehaviour
 		if (GUILayout.Button("NEXT"))
 		{
 			_chooseReject?.Invoke();
-			ChangeState(UIState.WaitingForNextCard);
 		}
 		GUILayout.EndVertical();
 	}
 
-	private void ChangeState(UIState uiState)
+	private void RequestChangeState(GameState gameState)
 	{
-		_uiState = uiState;
-		Debug.Log($"New UI State: {uiState}");
+		_onRequestGameState?.Invoke(gameState);
 	}
 }
