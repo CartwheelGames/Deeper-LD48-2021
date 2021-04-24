@@ -10,13 +10,13 @@ public class Phase : ScriptableObject
 	private string _fallbackOutcomeText;
 
 	[SerializeField]
-	private Sprite _background;
+	private Color _backgroundColor;
 
 	[SerializeField]
 	private List<Card> _cards = new List<Card>();
 
 	public string Title => _title;
 	public string OutcomeText => _fallbackOutcomeText;
-	public Sprite Background => _background;
+	public Color BackgroundColor => _backgroundColor;
 	public List<Card> Cards => _cards;
 }

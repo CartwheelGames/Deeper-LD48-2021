@@ -62,9 +62,7 @@ public class FakeUI : MonoBehaviour
 	private void DrawCard()
 	{
 		GUILayout.BeginVertical("box");
-		GUILayout.Label($"Title: {_cardState.Title}");
-		GUILayout.Label($"IsThought: {_cardState.IsThought}");
-		GUILayout.Label($"Location: {_cardState.Location?.name}");
+		DrawCardElements();
 		GUILayout.Label($"Description: {_cardState.Description}");
 		GUILayout.BeginHorizontal("box");
 		if (GUILayout.Button($"Reject: {_cardState.RejectText}"))
@@ -79,9 +77,19 @@ public class FakeUI : MonoBehaviour
 		GUILayout.EndVertical();
 	}
 
+	private void DrawCardElements()
+	{
+		GUILayout.Label($"Title: {_cardState.Title}");
+		GUILayout.Label($"BG Color: {_cardState.BackgroundColor}");
+		GUILayout.Label($"IsThought: {_cardState.IsThought}");
+		GUILayout.Label($"Location: {_cardState.Location?.name}");
+	}
+
 	private void DrawAcceptFeedback()
 	{
 		GUILayout.BeginVertical("box");
+		DrawCardElements();
+		GUILayout.Label($"Accept Response: {_cardState.AcceptResponse}");
 		GUILayout.Label($"Accept Feedback: {_cardState.AcceptFeedback?.name}");
 		if (GUILayout.Button("NEXT"))
 		{
@@ -94,6 +102,8 @@ public class FakeUI : MonoBehaviour
 	private void DrawRejectFeedback()
 	{
 		GUILayout.BeginVertical("box");
+		DrawCardElements();
+		GUILayout.Label($"Accept Response: {_cardState.RejectResponse}");
 		GUILayout.Label($"Reject Feedback: {_cardState.RejectFeedback?.name}");
 		if (GUILayout.Button("NEXT"))
 		{

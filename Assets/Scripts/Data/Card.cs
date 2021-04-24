@@ -25,7 +25,6 @@ public class Card : ScriptableObject
 	[SerializeField]
 	private Outcome _outcome;
 
-
 	[Tooltip("This card will not appear if the player's score is below this value")]
 	[SerializeField]
 	[Range(0, 100)]
@@ -45,25 +44,28 @@ public class Card : ScriptableObject
 	[SerializeField]
 	private Feedback _rejectFeedback;
 
-
 	[SerializeField]
 	[Range(-100, 100)]
 	private int _rejectValue;
 
+	[SerializeField]
+	private string _rejectResponse;
 
 	[Header("Accept")]
 
-
 	[SerializeField]
 	private string _acceptText;
+
 	[SerializeField]
 	[Range(-100, 100)]
 	private int _acceptValue;
 
-
 	[Tooltip("Represents the visual response image that may appear after an option is selected")]
 	[SerializeField]
 	private Feedback _acceptFeedback;
+
+	[SerializeField]
+	private string _acceptResponse;
 
 	public string Title => _title;
 	public bool IsThought => _isThought;
@@ -75,7 +77,9 @@ public class Card : ScriptableObject
 	public string RejectText => _rejectText;
 	public int RejectValue => _rejectValue;
 	public Feedback RejectFeedback => _rejectFeedback;
+	public string RejectResponse => _rejectResponse;
 	public int AcceptValue => _acceptValue;
 	public string AcceptText => _acceptText;
 	public Feedback AcceptFeedback => _acceptFeedback;
+	public string AcceptResponse => _acceptResponse;
 }

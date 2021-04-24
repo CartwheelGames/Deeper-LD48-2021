@@ -62,6 +62,7 @@ public sealed class GameManager : MonoBehaviour
 		{
 			_onChangeCard?.Invoke(new CardState(
 				_currentCard,
+				GetBackgroundColor(),
 				_locationMap.GetSprite(_currentCard.Location),
 				_feedbackMap.GetSprite(_currentCard.AcceptFeedback),
 				_feedbackMap.GetSprite(_currentCard.RejectFeedback),
@@ -101,6 +102,12 @@ public sealed class GameManager : MonoBehaviour
 		}
 		card = null;
 		return false;
+	}
+
+	private Color GetBackgroundColor()
+	{
+		Phase phase = _sequence.GetPhaseAt(_phaseIndex);
+		return (phase == null) ? Color.white : phase.BackgroundColor;
 	}
 
 	private string GetOutcome(Card card)
