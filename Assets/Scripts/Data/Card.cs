@@ -1,20 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Net.Mime;
+using UnityEngine;
 using System;
 
-[Serializable]
 public class Card : ScriptableObject
 {
 	[Tooltip("The display name of the card")]
 	[SerializeField]
 	private string _title;
 
+	[Tooltip("The description that appears on the card face")]
+	[SerializeField]
+	[TextArea(1, 2)]
+	private string _description;
+
+	[Tooltip("If true, the text will appear in a speech bubble")]
+	[SerializeField]
+	private bool _isThought;
+
 	[Tooltip("An index for the card's primary image background")]
 	[SerializeField]
 	private Location _location;
 
-	[Tooltip("The description that appears on the card face")]
+	[Tooltip("If the player loses the game at this point, this is the key for their failure text")]
 	[SerializeField]
-	private string _description;
+	private Outcome _outcome;
+
 
 	[Tooltip("This card will not appear if the player's score is below this value")]
 	[SerializeField]
@@ -26,14 +36,14 @@ public class Card : ScriptableObject
 	[Range(0, 100)]
 	private int _maxPoints = 100;
 
-	[Tooltip("If the player loses the game at this point, this is the key for their failure text")]
-	[SerializeField]
-	private Outcome _outcome;
-
 	[Header("Reject")]
 
 	[SerializeField]
 	private string _rejectText;
+
+	[Tooltip("Represents the visual response image that may appear after an option is selected")]
+	[SerializeField]
+	private Feedback _rejectFeedback;
 
 
 	[SerializeField]
@@ -51,7 +61,12 @@ public class Card : ScriptableObject
 	private int _acceptValue;
 
 
+	[Tooltip("Represents the visual response image that may appear after an option is selected")]
+	[SerializeField]
+	private Feedback _acceptFeedback;
+
 	public string Title => _title;
+	public bool IsThought => _isThought;
 	public Location Location => _location;
 	public string Description => _description;
 	public int MaxPoints => _maxPoints;
@@ -59,6 +74,8 @@ public class Card : ScriptableObject
 	public Outcome Outcome => _outcome;
 	public string RejectText => _rejectText;
 	public int RejectValue => _rejectValue;
-	public string AcceptText => _description;
+	public Feedback RejectFeedback => _rejectFeedback;
 	public int AcceptValue => _acceptValue;
+	public string AcceptText => _description;
+	public Feedback AcceptFeedback => _acceptFeedback;
 }

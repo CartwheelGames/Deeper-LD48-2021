@@ -1,11 +1,12 @@
 public enum Location
 {
 	None,
+	App,
 	Bar,
-	Park,
 	Bedroom,
 	LivingRoom,
-	Sidewalk,
+	Park,
 	Restaurant,
+	Sidewalk,
 	Wedding
 }

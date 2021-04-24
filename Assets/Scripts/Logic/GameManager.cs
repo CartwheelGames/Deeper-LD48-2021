@@ -3,18 +3,24 @@ using UnityEngine;
 public sealed class GameManager : MonoBehaviour
 {
 	[SerializeField]
+	private OutcomeMap _outcomeMap;
+	[SerializeField]
+	private LocationMap _locationMap;
+	[SerializeField]
+	private FeedbackMap _feedbackMap;
+	[SerializeField]
 	private Sequence _sequence;
 	[SerializeField]
 	private BasicEvent OnStartGame;
 	[SerializeField]
 	private BasicEvent OnEndGame;
 	[SerializeField]
-	private CardEvent OnChangeCard;
+	private CardStateEvent OnChangeCard;
 
-	private Card _currentCard;
 	private int _nextCardIndex;
 	private int _phaseIndex;
 	private int _score;
+	private Card _currentCard;
 
 	public void Start()
 	{
@@ -22,11 +28,21 @@ public sealed class GameManager : MonoBehaviour
 		OnStartGame.Invoke();
 	}
 
-	public void Next()
+	private void Choose(bool isAccepting)
 	{
-		if (TryGetCardPhase(out _currentCard))
+
+	}
+
+	private void Next()
+	{
+		if (TryGetCardPhase(out Card card))
 		{
-			OnChangeCard.Invoke(_currentCard);
+			OnChangeCard.Invoke(new CardState(
+				card,
+				_locationMap.GetSprite(card.Location),
+				_feedbackMap.GetSprite(card.AcceptFeedback),
+				_feedbackMap.GetSprite(card.RejectFeedback),
+				_outcomeMap.GetText(card.Outcome)));
 		}
 		else
 		{

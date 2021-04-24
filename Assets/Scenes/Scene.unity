@@ -339,6 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82940f2842f09f74cbba40a71a505e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _outcomeMap: {fileID: 11400000, guid: 3e70e9f10b0ab0a4e9123658884ad180, type: 2}
+  _locationMap: {fileID: 11400000, guid: b9248371e391e514e9a95b70304df5a8, type: 2}
+  _feedbackMap: {fileID: 11400000, guid: abc1ac82095fd594da383f8f56f8ad6d, type: 2}
   _sequence: {fileID: 11400000, guid: fdd9c7d0bb647454daf5a56a1e275a5b, type: 2}
   OnStartGame:
     m_PersistentCalls:
