@@ -19,11 +19,7 @@ public sealed class GameManager : MonoBehaviour
 	[SerializeField]
 	private GameStateEvent _onChangeGameState;
 
-	private int _nextCardIndex;
-	private int _phaseIndex;
-	private int _score;
-	private Card _currentCard;
-	private GameState _gameState;
+	private GameStore _store = new GameStore();
 
 	public void Begin()
 	{
@@ -34,21 +30,20 @@ public sealed class GameManager : MonoBehaviour
 
 	public void Accept()
 	{
-		_score += _currentCard.AcceptValue;
+		_store.Score += _store.CurrentCard.AcceptValue;
 	}
 
 	public void Reject()
 	{
-		_score -= _currentCard.AcceptValue;
+		_store.Score -= _store.CurrentCard.RejectValue;
 	}
 
 	public void ChangeState(GameState state)
 	{
-		if (_gameState != state)
+		if (_store.GameState != state)
 		{
-			_gameState = state;
+			_store.GameState = state;
 			_onChangeGameState?.Invoke(state);
-			Debug.Log(state);
 		}
 	}
 
@@ -60,10 +55,10 @@ public sealed class GameManager : MonoBehaviour
 
 	private void CleanUp()
 	{
-		_currentCard = null;
-		_nextCardIndex = 0;
-		_phaseIndex = 0;
-		_score = 0;
+		_store.CurrentCard = null;
+		_store.NextCardIndex = 0;
+		_store.PhaseIndex = 0;
+		_store.Score = 0;
 		ChangeState(GameState.None);
 	}
 
@@ -77,17 +72,17 @@ public sealed class GameManager : MonoBehaviour
 
 	private void Next()
 	{
-		if (TryGetCardPhase(out _currentCard))
+		if (TryGetCardPhase(out Card card))
 		{
+			_store.CurrentCard = card;
 			_onChangeCard?.Invoke(new CardPayload(
-				_currentCard,
+				card,
 				GetBackgroundColor(),
-				_locationMap.GetSprite(_currentCard.Location),
-				_feedbackMap.GetSprite(_currentCard.AcceptFeedback),
-				_feedbackMap.GetSprite(_currentCard.RejectFeedback),
-				GetOutcome(_currentCard)));
+				_locationMap.GetSprite(card.Location),
+				_feedbackMap.GetSprite(card.AcceptFeedback),
+				_feedbackMap.GetSprite(card.RejectFeedback),
+				GetOutcome(card)));
 			ChangeState(GameState.Card);
-
 		}
 		else
 		{
@@ -98,15 +93,15 @@ public sealed class GameManager : MonoBehaviour
 
 	private bool TryGetCardPhase(out Card card)
 	{
-		while (_phaseIndex < _sequence.Count)
+		while (_store.PhaseIndex < _sequence.Count)
 		{
-			Phase phase = _sequence.GetPhaseAt(_phaseIndex);
+			Phase phase = _sequence.GetPhaseAt(_store.PhaseIndex);
 			if (phase != null && TryGetNextValidCardPhase(phase, out card))
 			{
 				return true;
 			}
-			_nextCardIndex = 0;
-			_phaseIndex++;
+			_store.NextCardIndex = 0;
+			_store.PhaseIndex++;
 		}
 		card = null;
 		return false;
@@ -114,10 +109,10 @@ public sealed class GameManager : MonoBehaviour
 
 	private bool TryGetNextValidCardPhase(Phase phase, out Card card)
 	{
-		while (_nextCardIndex < phase.Cards.Count)
+		while (_store.NextCardIndex < phase.Cards.Count)
 		{
-			card = phase.Cards[_nextCardIndex++];
-			if (_score >= card.MinPoints && _score <= card.MaxPoints)
+			card = phase.Cards[_store.NextCardIndex++];
+			if (_store.Score >= card.MinPoints && _store.Score <= card.MaxPoints)
 			{
 				return true;
 			}
@@ -128,7 +123,7 @@ public sealed class GameManager : MonoBehaviour
 
 	private Color GetBackgroundColor()
 	{
-		Phase phase = _sequence.GetPhaseAt(_phaseIndex);
+		Phase phase = _sequence.GetPhaseAt(_store.PhaseIndex);
 		return (phase == null) ? Color.white : phase.BackgroundColor;
 	}
 
@@ -137,7 +132,7 @@ public sealed class GameManager : MonoBehaviour
 		string outcome = _outcomeMap.GetText(card.Outcome);
 		if (string.IsNullOrEmpty(outcome))
 		{
-			Phase phase = _sequence.GetPhaseAt(_phaseIndex);
+			Phase phase = _sequence.GetPhaseAt(_store.PhaseIndex);
 			if (phase != null)
 			{
 				outcome = phase.OutcomeText;
