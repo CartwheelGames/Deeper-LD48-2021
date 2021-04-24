@@ -11,42 +11,65 @@ public sealed class GameManager : MonoBehaviour
 	[SerializeField]
 	private Sequence _sequence;
 	[SerializeField]
-	private BasicEvent OnStartGame;
+	private BasicEvent _onBeginGame;
 	[SerializeField]
-	private BasicEvent OnEndGame;
+	private BasicEvent _onEndGame;
 	[SerializeField]
-	private CardStateEvent OnChangeCard;
+	private CardStateEvent _onChangeCard;
 
 	private int _nextCardIndex;
 	private int _phaseIndex;
 	private int _score;
 	private Card _currentCard;
 
-	public void Start()
+
+	public void Begin()
 	{
+		CleanUp();
 		Next();
-		OnStartGame.Invoke();
+		_onBeginGame?.Invoke();
 	}
 
-	private void Choose(bool isAccepting)
+	public void Choose(bool isAccepting)
 	{
+		if (_currentCard != null)
+		{
+			_score += _currentCard.AcceptValue;
+		}
+		else
+		{
+			_score += _currentCard.RejectValue;
+		}
+		Next();
+	}
 
+	private void Start()
+	{
+		_onEndGame.AddListener(CleanUp);
+	}
+
+	private void CleanUp()
+	{
+		_currentCard = null;
+		_nextCardIndex = 0;
+		_phaseIndex = 0;
+		_score = 0;
 	}
 
 	private void Next()
 	{
-		if (TryGetCardPhase(out Card card))
+		if (TryGetCardPhase(out _currentCard))
 		{
-			OnChangeCard.Invoke(new CardState(
-				card,
-				_locationMap.GetSprite(card.Location),
-				_feedbackMap.GetSprite(card.AcceptFeedback),
-				_feedbackMap.GetSprite(card.RejectFeedback),
-				_outcomeMap.GetText(card.Outcome)));
+			_onChangeCard?.Invoke(new CardState(
+				_currentCard,
+				_locationMap.GetSprite(_currentCard.Location),
+				_feedbackMap.GetSprite(_currentCard.AcceptFeedback),
+				_feedbackMap.GetSprite(_currentCard.RejectFeedback),
+				GetOutcome(_currentCard)));
 		}
 		else
 		{
-			OnEndGame.Invoke();
+			_onEndGame?.Invoke();
 		}
 	}
 
@@ -59,6 +82,7 @@ public sealed class GameManager : MonoBehaviour
 			{
 				return true;
 			}
+			_nextCardIndex = 0;
 			_phaseIndex++;
 		}
 		card = null;
@@ -78,4 +102,19 @@ public sealed class GameManager : MonoBehaviour
 		card = null;
 		return false;
 	}
+
+	private string GetOutcome(Card card)
+	{
+		string outcome = _outcomeMap.GetText(card.Outcome);
+		if (string.IsNullOrEmpty(outcome))
+		{
+			Phase phase = _sequence.GetPhaseAt(_phaseIndex);
+			if (phase != null)
+			{
+				outcome = phase.OutcomeText;
+			}
+		}
+		return outcome;
+	}
+
 }
