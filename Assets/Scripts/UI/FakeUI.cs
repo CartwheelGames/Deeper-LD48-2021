@@ -88,7 +88,8 @@ public class FakeUI : MonoBehaviour
 		GUILayout.Label($"Title: {_cardState.Title}");
 		GUILayout.Label($"BG Color: {_cardState.BackgroundColor}");
 		GUILayout.Label($"IsThought: {_cardState.IsThought}");
-		GUILayout.Label($"Location: {_cardState.Location?.name}");
+		string locationName = _cardState.Location != null ? _cardState.Location.name : null;
+		GUILayout.Label($"Location: {locationName}");
 	}
 
 	private void DrawAcceptFeedback()
@@ -96,7 +97,8 @@ public class FakeUI : MonoBehaviour
 		GUILayout.BeginVertical("box");
 		DrawCardElements();
 		GUILayout.Label($"Accept Response: {_cardState.AcceptResponse}");
-		GUILayout.Label($"Accept Feedback: {_cardState.AcceptFeedback?.name}");
+		string feedbackImageName = _cardState.AcceptFeedback != null ? _cardState.AcceptFeedback.name : null;
+		GUILayout.Label($"Accept Feedback: {feedbackImageName}");
 		if (GUILayout.Button("NEXT"))
 		{
 			_chooseAccept?.Invoke();
@@ -109,7 +111,8 @@ public class FakeUI : MonoBehaviour
 		GUILayout.BeginVertical("box");
 		DrawCardElements();
 		GUILayout.Label($"Accept Response: {_cardState.RejectResponse}");
-		GUILayout.Label($"Reject Feedback: {_cardState.RejectFeedback?.name}");
+		string feedbackImageName = _cardState.RejectFeedback != null ? _cardState.RejectFeedback.name : null;
+		GUILayout.Label($"Reject Feedback: {feedbackImageName}");
 		if (GUILayout.Button("NEXT"))
 		{
 			_chooseReject?.Invoke();
