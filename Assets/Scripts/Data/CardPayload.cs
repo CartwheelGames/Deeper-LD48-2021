@@ -14,7 +14,7 @@ public class CardPayload
 		OutcomeText = outcomeText;
 	}
 
-	public Color BackgroundColor { get; private set; }
+	public Color BackgroundColor { get; private set; } 
 	public Sprite AcceptFeedback { get; private set; }
 	public Sprite RejectFeedback { get; private set; }
 	public Sprite Location { get; private set; }

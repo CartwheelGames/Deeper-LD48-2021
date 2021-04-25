@@ -7,6 +7,7 @@ public class CardSwitcherUI : MonoBehaviour {
 
     [SerializeField] private CardUI _cardA;
     [SerializeField] private CardUI _cardB;
+    [SerializeField] private Camera _camera;
 
     private bool _frontCardIsA = true;
     private CardUI _CurrentCard => _frontCardIsA ? _cardA : _cardB;
@@ -20,12 +21,20 @@ public class CardSwitcherUI : MonoBehaviour {
     public void FlipCurrentCard(bool isLeft){
 
         _CurrentCard.Flip(isLeft);
+        
+        // turn the other card off while the current card is flipping bc
+        // it's not updated yet and so it will look different than when
+        // it will be revealed
+        _OtherCard.TurnOff();
     }
 
     public void TransitionOutCurrentCard(){
 
         _CurrentCard.TransitionOut();
         _OtherCard.MoveToFront();
+        
+        // Turn it back on again, now that it's about to be updated
+        _OtherCard.TurnOn();
 
         _frontCardIsA = !_frontCardIsA;
     }
@@ -33,5 +42,12 @@ public class CardSwitcherUI : MonoBehaviour {
     public void SetCurrentCardData(CardPayload cardPayload){
 
         _CurrentCard.SetCardPayload(cardPayload);
+        
+        SetCameraBackgroundColor(cardPayload.BackgroundColor);
+    }
+
+    private void SetCameraBackgroundColor(Color backgroundColor){
+
+        _camera.backgroundColor = backgroundColor;
     }
 }

@@ -79,7 +79,7 @@ public sealed class GameManager : MonoBehaviour
 			_onChangeCard?.Invoke(new CardPayload(
 				card,
 				GetBackgroundColor(),
-				_locationMap.GetSprite(card.Location),
+				card.Location,
 				_feedbackMap.GetSprite(card.AcceptFeedback),
 				_feedbackMap.GetSprite(card.RejectFeedback),
 				GetOutcome(card)));

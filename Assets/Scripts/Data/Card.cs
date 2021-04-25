@@ -18,8 +18,7 @@ public class Card : ScriptableObject
 	private bool _isThought;
 
 	[Tooltip("An index for the card's primary image background")]
-	[SerializeField]
-	private Location _location;
+	[SerializeField] private Sprite _location;
 
 	[Tooltip("If the player loses the game at this point, this is the key for their failure text")]
 	[SerializeField]
@@ -69,7 +68,8 @@ public class Card : ScriptableObject
 
 	public string Title => _title;
 	public bool IsThought => _isThought;
-	public Location Location => _location;
+	
+	public Sprite Location => _location;
 	public string Description => _description;
 	public int MaxPoints => _maxPoints;
 	public int MinPoints => _minPoints;

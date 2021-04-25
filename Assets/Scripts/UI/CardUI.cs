@@ -23,6 +23,22 @@ public class CardUI : MonoBehaviour {
         _cardPayload = cardPayload;
 
         Description = _cardPayload.Description;
+
+        if (_cardPayload.Location != null)
+        {
+            CardFrontImage = _cardPayload.Location;
+            CardBackImage = _cardPayload.Location;
+        }
+    }
+
+    public void TurnOff(){
+        
+        gameObject.SetActive(false);
+    }
+    
+    public void TurnOn(){
+        
+        gameObject.SetActive(true);
     }
     public void Flip(bool isLeft){
         PlayAnim(isLeft ? "FlipLeft" : "FlipRight");
