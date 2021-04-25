@@ -18,12 +18,12 @@ public class CardPayload
 	public Sprite AcceptFeedback { get; private set; }
 	public Sprite RejectFeedback { get; private set; }
 	public Sprite Location { get; private set; }
-	public string OutcomeText { get; private set; }
+	public string OutcomeText { get; private set; } // what happens if you lose the game right there
 	public string Title => _card.Title;
 	public bool IsThought => _card.IsThought;
 	public string Description => _card.Description;
 	public string AcceptResponse => _card.AcceptResponse;
-	public string RejectResponse => _card.RejectResponse;
-	public string RejectText => _card.RejectText;
+	public string RejectResponse => _card.RejectResponse; // text on the back of the card
+	public string RejectText => _card.RejectText; // text that should appear on front when you're begging to swipe 
 	public string AcceptText => _card.AcceptText;
 }

@@ -51,6 +51,7 @@ public sealed class GameManager : MonoBehaviour
 	{
 		_onEndGame.AddListener(CleanUp);
 		_onChangeGameState.AddListener(CheckMoveNext);
+		ChangeState(GameState.TitleScreen);
 	}
 
 	private void CleanUp()
@@ -59,7 +60,7 @@ public sealed class GameManager : MonoBehaviour
 		_store.NextCardIndex = 0;
 		_store.PhaseIndex = 0;
 		_store.Score = 0;
-		ChangeState(GameState.None);
+		ChangeState(GameState.TitleScreen);
 	}
 
 	private void CheckMoveNext(GameState state)
@@ -87,7 +88,7 @@ public sealed class GameManager : MonoBehaviour
 		else
 		{
 			_onEndGame?.Invoke();
-			ChangeState(GameState.None);
+			ChangeState(GameState.TitleScreen);
 		}
 	}
 
