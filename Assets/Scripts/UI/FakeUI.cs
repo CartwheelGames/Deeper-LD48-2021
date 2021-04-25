@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// rename to: UIController
+/// </summary>
 public class FakeUI : MonoBehaviour
 {
 	/// <summary>
@@ -26,10 +29,26 @@ public class FakeUI : MonoBehaviour
 	[SerializeField]
 	private BasicEvent _onReject;
 
+	[SerializeField] private GameObject _titleScreen;
+
 	private CardPayload _cardPayload;
 
 	private GameState _gameState;
 
+	private void InputLeftOrRight(bool isRight){
+
+		if (_gameState == GameState.Card)
+		{
+			if (isRight)
+			{
+				RequestAccept();
+			}
+			else
+			{
+				RequestReject();
+			}
+		}
+	}
 
 	/// <summary>
 	/// Target of GameManager's _onChangeGameState event. Changes the panel that needs to be rendered.
@@ -65,6 +84,7 @@ public class FakeUI : MonoBehaviour
 			switch (_gameState)
 			{
 				case GameState.Card:
+		
 					DrawCard();
 					break;
 				case GameState.IsAccepting:
@@ -86,12 +106,7 @@ public class FakeUI : MonoBehaviour
 	/// </summary>
 	private void DrawTitleScreen()
 	{
-		GUILayout.BeginVertical("box");
-		if (GUILayout.Button("Begin"))
-		{
-			RequestBegin();
-		}
-		GUILayout.EndVertical();
+		_titleScreen.SetActive(true);
 	}
 
 	/// <summary>
@@ -163,6 +178,10 @@ public class FakeUI : MonoBehaviour
 		GUILayout.EndVertical();
 	}
 
+	public void OnTitleScreenPressed(){
+		RequestBegin();
+	}
+
 
 	/// <summary>
 	/// Signal to the GameManager that the game should start.
@@ -183,4 +202,31 @@ public class FakeUI : MonoBehaviour
 	/// Signal to the GameManager that the user has left-swiped on the current card.
 	/// </summary>
 	private void RequestReject() => _onReject?.Invoke();
+
+	#region Input
+	
+	private void Awake()
+	{
+		SwipeDetector.OnSwipe += OnSwipe;
+	}
+
+	private void Update(){
+
+		if (Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			InputLeftOrRight(true);
+		}
+		else if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			InputLeftOrRight(false);
+		}
+	}
+
+	private void OnSwipe(SwipeData swipeData){
+		
+		// if direction swiped is CLEARLY accept, register Accept, otherwise register reject
+		InputLeftOrRight(swipeData.Direction == SwipeDirection.Right);
+	}
+
+	#endregion
 }
