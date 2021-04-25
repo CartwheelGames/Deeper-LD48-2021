@@ -16,6 +16,7 @@ public class CardSwitcherUI : MonoBehaviour {
     private void Start(){
         
         _CurrentCard.MoveToFront();
+        _OtherCard.MoveToBack();
     }
     
     public void FlipCurrentCard(bool isLeft){
@@ -30,11 +31,11 @@ public class CardSwitcherUI : MonoBehaviour {
 
     public void TransitionOutCurrentCard(){
 
-        _CurrentCard.TransitionOut();
-        _OtherCard.MoveToFront();
-        
         // Turn it back on again, now that it's about to be updated
         _OtherCard.TurnOn();
+        
+        _CurrentCard.TransitionOut();
+        _OtherCard.MoveToFront();
 
         _frontCardIsA = !_frontCardIsA;
     }
