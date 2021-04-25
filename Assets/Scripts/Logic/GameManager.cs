@@ -5,8 +5,6 @@ public sealed class GameManager : MonoBehaviour
 	[SerializeField]
 	private OutcomeMap _outcomeMap;
 	[SerializeField]
-	private LocationMap _locationMap;
-	[SerializeField]
 	private FeedbackMap _feedbackMap;
 	[SerializeField]
 	private Sequence _sequence;
@@ -35,7 +33,7 @@ public sealed class GameManager : MonoBehaviour
 
 	public void Reject()
 	{
-		_store.Score -= _store.CurrentCard.RejectValue;
+		_store.Score += _store.CurrentCard.RejectValue;
 	}
 
 	public void ChangeState(GameState state)
@@ -79,7 +77,6 @@ public sealed class GameManager : MonoBehaviour
 			_onChangeCard?.Invoke(new CardPayload(
 				card,
 				GetBackgroundColor(),
-				card.Location,
 				_feedbackMap.GetSprite(card.AcceptFeedback),
 				_feedbackMap.GetSprite(card.RejectFeedback),
 				GetOutcome(card)));
