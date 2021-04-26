@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: 
   _fallbackOutcomeText: 
-  _backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  _backgroundColor: {r: 0.33076504, g: 0.6132076, b: 0, a: 1}
   _cards:
   - {fileID: 11400000, guid: 33f98616dcfb54d879ca010aabd95bd2, type: 2}
   - {fileID: 11400000, guid: e6ee4c3d417584b0a867e30f6cfcdebb, type: 2}

@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: Pickup
   m_EditorClassIdentifier: 
   _title: Pickup
-  _description: Should you try that pickup line you saw online?
+  _description: A cutie on Timber has a hilarious joke and similar interests to yours
+    on their profile.
   _isThought: 1
   _location: {fileID: 21300000, guid: 4fa557e625d034707819230159b1cfad, type: 3}
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100
-  _rejectText: No
+  _rejectText: "Swipe right but don\u2019t message"
   _rejectFeedback: 6
   _rejectValue: 5
-  _rejectResponse: '"Hi there cutie!"'
-  _acceptText: Yes
+  _rejectResponse: You play it cool.  It takes a week for them to send you a message. 
+    But then....
+  _acceptText: Swipe right and make a pun
   _acceptValue: 2
   _acceptFeedback: 10
-  _acceptResponse: '"Are you a sugar maple tree? Because I would totally tap that."'
+  _acceptResponse: '"Are you a sugar maple tree? Because I would totally tap that." 
+    Crickets......and then 4 laughing emojis in a row.  You''re in.'
