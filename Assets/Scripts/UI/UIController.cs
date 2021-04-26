@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
 
 	[SerializeField] private GameObject _titleScreen;
 	[SerializeField] private CardSwitcherUI _cardSwitcher;
+	[SerializeField] private LoveMeterUI _loveMeter;
 	
 	private CardPayload _cardPayload;
 
@@ -54,6 +55,15 @@ public class UIController : MonoBehaviour
 	public void ReceiveCardPayload(CardPayload cardPayload){
 		
 		_cardPayload = cardPayload;
+	}
+
+	public void ReceiveScoreChange(int score){
+
+		// HARDCODED BC SCORE IS ALWAYS 0 HERE FOR SOME REASON
+		score = 50;
+		float percentageFilled = score / 100f;
+		
+		_loveMeter.SetPercentageFilled(percentageFilled);
 	}
 
 	/// <summary>

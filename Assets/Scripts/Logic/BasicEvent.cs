@@ -5,3 +5,8 @@ using UnityEngine.Events;
 public sealed class BasicEvent : UnityEvent
 {
 }
+
+[Serializable]
+public sealed class ScoreEvent : UnityEvent<int>
+{
+}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public sealed class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public sealed class GameManager : MonoBehaviour
 	private CardPayloadEvent _onChangeCard;
 	[SerializeField]
 	private GameStateEvent _onChangeGameState;
+	[SerializeField] 
+	private ScoreEvent _onScoreChange;
 
 	private GameStore _store = new GameStore();
 
@@ -29,11 +32,13 @@ public sealed class GameManager : MonoBehaviour
 	public void Accept()
 	{
 		_store.Score += _store.CurrentCard.AcceptValue;
+		_onScoreChange?.Invoke(_store.Score);
 	}
 
 	public void Reject()
 	{
 		_store.Score += _store.CurrentCard.RejectValue;
+		_onScoreChange?.Invoke(_store.Score);
 	}
 
 	public void ChangeState(GameState state)
@@ -58,6 +63,7 @@ public sealed class GameManager : MonoBehaviour
 		_store.NextCardIndex = 0;
 		_store.PhaseIndex = 0;
 		_store.Score = 0;
+		_onScoreChange?.Invoke(_store.Score);
 		ChangeState(GameState.TitleScreen);
 	}
 
