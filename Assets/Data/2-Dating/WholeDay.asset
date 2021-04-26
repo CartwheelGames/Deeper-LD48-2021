@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
+  m_Name: WholeDay
+  m_EditorClassIdentifier: 
+  _title: WholeDay
+  _description: "You go out on another date and you don\u2019t mean to, but you spend
+    the whole day together. You can\u2019t get enough. You feel yourself starting
+    to like him too much. Do you ditch the date quickly at the end without a goodbye
+    because you\u2019re too afraid of coming on too strong and liking him more than
+    he likes you? Or do you ask to spend the night at his place so you can cuddle
+    in bed?"
+  _isThought: 0
+  _location: {fileID: 0}
+  _outcome: 0
+  _minPoints: 0
+  _maxPoints: 100
+  _rejectText: 
+  _rejectFeedback: 4
+  _rejectValue: -2
+  _rejectResponse: 
+  _acceptText: 
+  _acceptValue: 2
+  _acceptFeedback: 5
+  _acceptResponse: 

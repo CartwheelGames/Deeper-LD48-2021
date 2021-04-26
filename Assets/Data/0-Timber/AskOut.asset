@@ -15,11 +15,11 @@ MonoBehaviour:
   _title: AskOut
   _description: '"Would you like to get dinner soon?"'
   _isThought: 0
-  _location: 1
+  _location: {fileID: 21300000, guid: 4fa557e625d034707819230159b1cfad, type: 3}
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100
-  _rejectText: '"How about we grab some mimosas this weekend instead?" '
+  _rejectText: '"How about some mimosas this weekend instead?" '
   _rejectFeedback: 9
   _rejectValue: 2
   _rejectResponse: '"Haha, was it so obvious I love brunch"'

@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4af73ff2291c60c438f2ddb3cfea49d1, type: 3}
-  m_Name: Phone
+  m_Name: Couch
   m_EditorClassIdentifier: 
-  _title: Phone
-  _description: Should I ask for their phone number?
-  _isThought: 1
-  _location: {fileID: 21300000, guid: 4fa557e625d034707819230159b1cfad, type: 3}
+  _title: Couch
+  _description: You are on their couch, do you suggest you watch a movie or play
+    a board game? (both lead to making out on the couch--super sexi)
+  _isThought: 0
+  _location: {fileID: 0}
   _outcome: 0
   _minPoints: 0
   _maxPoints: 100
-  _rejectText: No
-  _rejectFeedback: 0
-  _rejectValue: 0
-  _rejectResponse: I should probably just keep chatting for now.
-  _acceptText: Yes
+  _rejectText: 
+  _rejectFeedback: 4
+  _rejectValue: -2
+  _rejectResponse: 
+  _acceptText: 
   _acceptValue: 2
-  _acceptFeedback: 1
+  _acceptFeedback: 5
   _acceptResponse: 
